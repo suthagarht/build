@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create VPC
+
+Parameters:
+
+  Environment:
+    Description: The environment name
+    Type: String
+    Default: dev-environment
+
+  VpcCIDR:
+    Description: VPC's CIDR block
+    Type: String
+    Default: 10.121.0.0/16 
+
+Resources:
+
+  VPC:
+    Type: "AWS::EC2::VPC"
+    Properties: 
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+    Tags:
+      - 
+        Key: Name
+        Value: !Ref Environment
+      - 
+        key: Owner
+        Value: "dev-team"
+          
